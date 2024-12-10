@@ -31,9 +31,19 @@ const Calculator = () => {
     } else {
       setShowValue((prev) => prev + items);
     }
+
+    if (
+      (showValue.slice(-1) == "/" ||
+        showValue.slice(-1) == "-" ||
+        showValue.slice(-1) == "*" ||
+        showValue.slice(-1) == "+") &&
+      (items == "/" || items == "-" || items == "*" || items == "+")
+    ) {
+      setShowValue(showValue.slice(0, -1) + items);
+    }
   }
   return (
-    <div>
+    <div className="Calculator">
       <input
         type="text"
         value={showValue}
@@ -41,9 +51,13 @@ const Calculator = () => {
       />
       <div className="btn-vlv">
         {btnData.map((items, index) => (
-          <span onClick={(e) => handleCal(items, e)} key={index}>
+          <button
+            id={`btn-${index}`}
+            onClick={() => handleCal(items)}
+            key={index}
+          >
             {items}
-          </span>
+          </button>
         ))}
       </div>
     </div>
