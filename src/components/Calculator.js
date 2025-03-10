@@ -23,6 +23,8 @@ const Calculator = () => {
     "=",
   ];
 
+  // if
+
   function handleCal(items) {
     if (items == "=") {
       setShowValue((prev) => eval(prev));
